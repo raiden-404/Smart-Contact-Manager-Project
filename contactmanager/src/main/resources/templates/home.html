@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!--replacing section field with base template-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <section class="banner d-flex justify-content-center align-items-center">
+
+         <!-- Full-Screen Image -->
+         <img src="/images/contactWallpaper.jpg" alt="Background Image" style="background:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8));">
+
+        <div class="text-center">
+            <h1 class="font-weight-bold">Smart Contact Manager</h1>
+            <p>
+                This plateform help you to keep store your all contact on cloud safely, and allow easy access from any where.
+            </p>
+            <button class="btn bg-primarly text-white" th:href="@{/signup}">Get Start</button>
+        </div>
+    <section>
+</body>
+</html>

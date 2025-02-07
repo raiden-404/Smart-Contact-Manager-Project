@@ -1,0 +1,33 @@
+.bg-primarly{
+    background: #0c8a8e00 !important;
+}
+.banner {
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; /* Full screen height */
+    overflow: hidden; /* Prevents image from overflowing */
+}
+
+.banner img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.text-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 1; /* Ensures text is visible above the image */
+}

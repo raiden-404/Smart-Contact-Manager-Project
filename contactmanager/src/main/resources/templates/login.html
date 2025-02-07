@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <section>
+    <style>
+        /* Fullscreen Background Video */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Ensure video stays behind */
+            overflow: hidden;
+        }
+        .video-container video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover; /* Ensures video covers the full screen */
+        }
+
+        /* Form Container */
+        .form-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(33, 120, 116, 0.44);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(11, 174, 155, 0.82);
+            max-width: 550px;
+            text-align: top;
+            z-index: 1; /* Ensure form stays on top */
+            color: white;
+            width:100%;
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .form-control::placeholder {
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 1);
+        }
+
+        /* Button Styling */
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            padding: 12px;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Video Background -->
+    <div class="video-container">
+        <video autoplay loop muted playsinline>
+            <source th:src="@{/videos/background.mp4}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Form Section -->
+    <div class="form-container">
+        <h2 style="position: relative; top: 0; left: 50%; transform: translateX(-50%); text-align: center;font-family:Papyrus">Log In</h2>
+
+        <form th:action="@{/doSignup}" method="post">
+
+            <!-- Email Field -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+            </div>
+
+            <!-- Password Field -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Log In</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>
