@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,36 +84,66 @@
 
     <!-- Form Section -->
     <div class="form-container">
+
+        
         <div style="position: relative; top: 0; left: 50%; transform: translateX(-50%); text-align: center;font-family:Papyrus;">
             <h1>Sign Up</h1>
             <p>Join us and manage your contacts easily.</p>
         </div>
-        <form th:action="@{/doSignup}" method="post">
+
+        <!--Error Message Box-->
+        <div th:if="${session['errorMessage']}" id="errorBox" class="p-3" style="border: 2px solid rgb(199, 10, 10); background-color: rgba(255, 0, 0, 0.24); border-radius: 10px;">
+            <span th:text="${session['errorMessage']}"></span>
+        </div>
+        
+        <!--Success Message Box-->
+        <div th:if="${session['successMessage']}" id="successBox" class="p-3" style="border: 2px solid rgb(5, 174, 30); background-color: rgba(21, 134, 29, 0.38); border-radius: 10px;">
+            <span th:text="${session['successMessage']}"></span>
+        </div>
+        
+
+        <!-- JavaScript to Auto-Hide Message Boxes After 3 Seconds -->
+        <script>
+            setTimeout(() => {
+                let errorBox = document.getElementById('errorBox');
+                let successBox = document.getElementById('successBox');
+
+                if (errorBox) {
+                    errorBox.style.display = 'none';
+                }
+                if (successBox) {
+                    successBox.style.display = 'none';
+                }
+            }, 3000); // 3000ms = 3 seconds
+        </script>
+
+
+        <form th:action="@{/doSignup}" method="post" th:object="${user}">
             <!-- Name Field -->
             <div class="mb-3">
                 <label for="name" class="form-label">Full Name:</label>
-                <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" th:value="${user.name}" th:name="name" required>
             </div>
 
             <!-- Email Field -->
             <div class="mb-3">
                 <label for="email" class="form-label">Email:</label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" th:value="${user.email}" th:name="email" required>
             </div>
 
             <!-- Password Field -->
             <div class="mb-3">
                 <label for="password" class="form-label">Password:</label>
-                <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" required>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" th:name="password" required>
             </div>
 
             <!-- About Field -->
             <div class="mb-3">
                 <label for="about" class="form-label">About You:</label>
-                <textarea id="about" name="about" class="form-control" rows="3" placeholder="Tell us about yourself..."></textarea>
+                <textarea id="about" name="about" class="form-control" rows="3" placeholder="Tell us about yourself... " th:text="${user.about}" th:name="about"></textarea>
             </div>
 
-            <input type="checkbox" class="agreed" font-family="cursive" required> I agree to the terms and conditions</input>  
+            <input type="checkbox" class="agreed" font-family="cursive" th:name="agreed" required> I agree to the terms and conditions</input>  
             <!-- Submit Button -->
             <button type="submit" class="btn btn-primary">Sign Up</button>
         </form>

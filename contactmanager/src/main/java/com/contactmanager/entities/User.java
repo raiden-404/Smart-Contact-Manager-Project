@@ -16,41 +16,39 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "USER")
 public class User {
-    //Auto generated UserID
+    // Auto generated UserID
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    //UserName
+    // UserName
     private String name;
 
-    //Unique-Email for Login
+    // Unique-Email for Login
     @Column(unique = true)
     private String email;
 
-    //password
+    // password
     private String password;
 
-    //role assigned to user
+    // role assigned to user
     private String role;
 
-    //check User is blocked or not
+    // check User is blocked or not
     private boolean enabled;
 
-    //ImageUrl of user
+    // ImageUrl of user
     private String image;
 
-    //userAbout section
+    // userAbout section
     @Column(length = 1000)
     private String about;
 
-    //Foregin Key- Mapped User with its all Contacts
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    // Foregin Key- Mapped User with its all Contacts
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Contact> contacts = new ArrayList<>();
 
-
-
-    //Getters And Setters
+    // Getters And Setters
     public int getId() {
         return id;
     }
@@ -114,7 +112,7 @@ public class User {
     public void setAbout(String about) {
         this.about = about;
     }
-    
+
     public List<Contact> getContacts() {
         return contacts;
     }
@@ -123,9 +121,7 @@ public class User {
         this.contacts = contacts;
     }
 
-
-
-    //Constructor
+    // Constructor
 
     public User(int id, String name, String email, String password, String role, boolean enabled, String image,
             String about) {
@@ -142,5 +138,10 @@ public class User {
     public User() {
     }
 
-
+    // toString() method
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", role=" + role
+                + ", enabled=" + enabled + ", image=" + image + ", about=" + about + ", contacts=" + contacts + "]";
+    }
 }
