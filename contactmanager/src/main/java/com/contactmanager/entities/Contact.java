@@ -8,43 +8,42 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-
 //Declaring it as entity
 @Entity
 @Table(name = "CONTACT")
 public class Contact {
-    //ContectID
+    // ContectID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cId;
 
-    //Contact-FirstName
+    // Contact-FirstName
     private String firstName;
 
-    //Contact-LastName
+    // Contact-LastName
     private String lastName;
-    
-    //Contact work mode
+
+    // Contact work mode
     private String work;
-    
-    //Contact email
+
+    // Contact email
     private String email;
-    
-    //Contact Phone Number
+
+    // Contact Phone Number
     private String phone;
-    
-    //Contact ImageUrl
+
+    // Contact ImageUrl
     private String image;
-    
-    //Contact Discription section
+
+    // Contact Discription section
     @Column(length = 1000)
     private String descritption;
 
     @ManyToOne
     private User user;
 
-    //Getters And Setters
-    
+    // Getters And Setters
+
     public int getcId() {
         return cId;
     }
@@ -108,7 +107,7 @@ public class Contact {
     public void setDescritption(String descritption) {
         this.descritption = descritption;
     }
-    
+
     public User getUser() {
         return user;
     }
@@ -117,7 +116,7 @@ public class Contact {
         this.user = user;
     }
 
-    //Constructors
+    // Constructors
 
     public Contact(int cId, String firstName, String lastName, String work, String email, String phone, String image,
             String descritption) {
@@ -133,6 +132,5 @@ public class Contact {
 
     public Contact() {
     }
-
 
 }
